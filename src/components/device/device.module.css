@@ -1,0 +1,74 @@
+
+
+.items {
+    height: 100%;
+    max-height: 80vh;
+    /*display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; */
+    overflow: auto;
+    /* margin-top: 100px */
+    
+}
+
+.item {
+margin-top: 15px;
+min-width: 100%;
+}
+
+.titleRow {
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.activeWiFiIcon {
+color: green;
+}
+
+.descriptionRowBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+}
+
+.mainInfoRow {
+    margin-top: 15px;
+    display: flex;
+    margin: 15px -5px;
+}
+
+.mainInfoRowItem {
+    flex: 1 1 auto;
+    margin: 0 5px;
+}
+
+.descriptionRowWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.valuesWrapper {
+    width: 100%;
+    display: flex;
+}
+
+.values {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 5px;
+}
+
+.measurementsWrapper {
+    display: flex;
+}
+
+.switches {
+    display: flex;
+    justify-content: space-between;
+}

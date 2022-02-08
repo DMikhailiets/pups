@@ -1,0 +1,28 @@
+.items {
+  height: 100%;
+  max-height: 80vh;
+  /*display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; */
+  overflow: auto;
+  /* margin-top: 100px */
+  
+}
+
+.item {
+  margin-top: 15px;
+  min-width: 100%;
+}
+
+.titleRow {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activeWiFiIcon {
+  color: green;
+}
