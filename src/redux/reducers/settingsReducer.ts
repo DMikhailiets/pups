@@ -1,4 +1,4 @@
-import { actionsTypes, settingsReducerActionsType } from '../actions.ts/settingsReducerActions'
+import { actionsTypes, settingsReducerActionsType } from '../actions/settingsReducerActions'
 
 interface stateInterface {
   darkTheme: boolean

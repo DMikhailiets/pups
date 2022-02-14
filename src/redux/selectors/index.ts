@@ -1,2 +1,3 @@
 export { fetchSettingsData } from './settingsSelector'
-export { fetchData } from './simpleSelector'
+export { fetchPUPsData } from './PUPsSelector'
+export { fetchMulticastData } from './multicastSelector'

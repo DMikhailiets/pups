@@ -18,3 +18,11 @@ export const fetchPUPsData = createSelector(getPUPsData, data => {
     }))
   }
 })
+
+export const fetchIsLoading = createSelector(getPUPsData, data => {
+ return data.isLoading
+})
+
+export const fetchPUPsTypes = createSelector(getPUPsData, data => {
+  return data.pupsTypes
+ })

@@ -1,12 +1,13 @@
  
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { settingsReducer, PUPsReducer} from './reducers'
+import { settingsReducer, PUPsReducer, multicastReducer} from './reducers'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunkMiddleware from 'redux-thunk'
 
 let rootReducer = combineReducers({
   settingsReducer,
-  PUPsReducer
+  PUPsReducer,
+  multicastReducer
 })
 
 type RootReducer = typeof rootReducer

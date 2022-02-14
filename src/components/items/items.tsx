@@ -1,22 +1,23 @@
-import { LoadingOutlined, WifiOutlined } from '@ant-design/icons'
-import { Empty, Card } from 'antd'
+import { DeleteOutlined, LoadingOutlined, WifiOutlined } from '@ant-design/icons'
+import { Empty, Card, Modal } from 'antd'
 import Meta from 'antd/lib/card/Meta'
 import React from 'react'
 import style from './items.module.css'
 import { PUP, PUPsType, PUPsDataType } from '../../interfaces/pupsInterfaces';
 
 type PUPsItemsProps = {
-  PUPsItems: PUPsDataType[]
+  PUPsItems: PUPsDataType[],
+  deletePUP: Function
 }
 
-const PUPsItems: React.FC<PUPsItemsProps> = ({PUPsItems}) => {
+const PUPsItems: React.FC<PUPsItemsProps> = ({PUPsItems, deletePUP}) => {
   return (
     <div className={style.PUPsItems}>{
       ! PUPsItems
       ? <Empty/>
        : <>{ PUPsItems.map((PUP: PUPsDataType) => {
          if (PUP.pupType?.DevId) {
-           return <Item title={PUP.pupType.Type} key={PUP.DevId} pup={PUP}/>
+           return <Item title={PUP.pupType.Type} key={PUP.ip+ PUP.port} pup={PUP} deletePUP={deletePUP}/>
          }
          return <EmptyItem/>
        })}</>
@@ -24,11 +25,11 @@ const PUPsItems: React.FC<PUPsItemsProps> = ({PUPsItems}) => {
   )
 }
 
-const Item = (props: {title: string, pup: PUPsDataType})  => {
+const Item = (props: {title: string, pup: PUPsDataType, deletePUP: Function})  => {
   const { title, pup } = props
   return (
     <Card className={style.item}>
-      <Meta title={<TitleRow title={title}/>} description={<MetaDescription ip={pup.ip} port={pup.port}/>}/>
+      <Meta title={<TitleRow title={title}/>} description={<MetaDescription deletePUP={props.deletePUP} ip={pup.ip} port={pup.port}/>}/>
     </Card>
   )
 }
@@ -63,15 +64,28 @@ const TitleRow = (props: {title: string}) => {
   )
 }
 
-const MetaDescription = (props: { ip: string, port: number}) => {
+const MetaDescription = (props: { ip: string, port: number, deletePUP: Function}) => {
+  const openModal = () => {
+    
+  }
   return (
     <>
       <p>{`${props.ip}:${props.port}`}</p>
-      <div>
+      <div style={{display: 'flex', flexGrow: 1, justifyContent: 'space-between'}}>
         <p>КСМСИ(2) (50.12.432.123.432.34)</p>
+        <DeleteOutlined onClick={() => props.deletePUP(props.ip, props.port)}/>
       </div>
     </>
   )
 }
 
+
+const warning = () => {
+  Modal.warning({
+    title="Добавить ПУП",
+    visible={visible}
+    onCancel={() => onClose()}
+    footer={<></>}
+  });
+}
 export default PUPsItems

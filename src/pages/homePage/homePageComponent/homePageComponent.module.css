@@ -1,0 +1,8 @@
+.pupsColumn {
+    height: 100%;
+    display: flex;
+    flex-shrink: 1;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+}

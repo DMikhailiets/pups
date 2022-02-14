@@ -1,17 +1,18 @@
 import { PUP, PUPsType } from '../../interfaces/pupsInterfaces'
-import { actionsTypes, pupsReducerActionTypes } from '../actions.ts/pupsReducerActions'
+import { actionsTypes, pupsReducerActionTypes } from '../actions/pupsReducerActions'
 
 interface stateInterface {
   pups: PUP[] | null
   pupsTypes: PUPsType[] | null
-
+  isLoading: boolean
 }
 const initialState: stateInterface = {
   pups: null,
-  pupsTypes: null
+  pupsTypes: null,
+  isLoading: false
 }
 
-export let simpleReducer = (state = initialState, action: pupsReducerActionTypes): stateInterface => {
+export let PUPsReducer = (state = initialState, action: pupsReducerActionTypes): stateInterface => {
   switch (action.type){
     case actionsTypes.SET_PUPS: {
       return {
@@ -23,9 +24,15 @@ export let simpleReducer = (state = initialState, action: pupsReducerActionTypes
         ...state, pupsTypes: [...action.payload]
       }
     }
+    case actionsTypes.SET_IS_LOADING: {
+      return {
+        ...state,
+        isLoading: action.payload
+      }
+    }
     default: 
       return state
   }
 } 
 
-export default simpleReducer
+export default PUPsReducer

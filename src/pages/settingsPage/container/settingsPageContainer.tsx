@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSettings } from '../../../redux/actions.ts'
+import { setSettings } from '../../../redux/actions'
 import { fetchSettingsData } from '../../../redux/selectors'
 import SettingsPageComponent from '../component/settingsPageComponent'
 

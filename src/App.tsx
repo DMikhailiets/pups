@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import { RootComponent } from './pages/index'
-// import 'antd/dist/antd.css'
+import 'antd/dist/antd.css'
 import { useThemeSwitcher } from "react-css-theme-switcher";
 import { Switch, Input } from 'antd';
 //import './anotherCSS.less'
