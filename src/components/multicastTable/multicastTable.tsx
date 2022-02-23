@@ -26,7 +26,7 @@ const MulticastTable: React.FC<MulticastTableProps> = ({multicast}) => {
 
 const columns = [
   {
-    title: 'devIdOrigin',
+    title: 'devId',
     dataIndex: 'devIdOrigin',
     key: 'ip',
     render: (text: string) => <a>{text}</a>,

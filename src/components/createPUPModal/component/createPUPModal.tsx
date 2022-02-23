@@ -1,5 +1,6 @@
 import { LockOutlined, MailOutlined } from '@ant-design/icons'
 import { Button, Form, Input, Select } from 'antd'
+import { FormInstance } from 'antd/es/form';
 import Modal from 'antd/lib/modal/Modal'
 import React from 'react'
 import { PUPsType } from '../../../interfaces/pupsInterfaces'
@@ -12,10 +13,14 @@ type ModalProps = {
   onClose: Function
   pupsTypes: PUPsType[] | null
   addNewPUP: Function
-  // messageText: string
+  getPUPs: () => void
 }
 
-const CreateNewPUPModal: React.FC<ModalProps> = ({ visible, onClose, addNewPUP, isLoading, pupsTypes }) => {
+const CreateNewPUPModal: React.FC<ModalProps> = ({ visible, onClose, addNewPUP, isLoading, pupsTypes, getPUPs }) => {
+  const formRef = React.useRef<FormInstance>(null);
+  let a = () => {
+    //formRef.current!.resetFields();
+  }
   return <Modal
     title="Добавить ПУП"
     visible={visible}
@@ -23,8 +28,11 @@ const CreateNewPUPModal: React.FC<ModalProps> = ({ visible, onClose, addNewPUP, 
     footer={<></>}
   ><Form
     autoComplete="off"
+    ref={formRef}
     onFinish={(pup) => {
       addNewPUP(pup)
+      getPUPs()
+      formRef.current!.resetFields()
       onClose()
     }}
   >

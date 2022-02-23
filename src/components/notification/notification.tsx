@@ -15,7 +15,6 @@ export enum notificationTypes {
 }
 
 const Notification: (props: notificationProps) => void = ({ text = '', type = "info", title = '', duration = 3 }) => {
-  debugger
   switch (type) {
     case notificationTypes.SUCCESS: return notification[type]({
       message: title,

@@ -4,7 +4,7 @@ import Layout from 'antd/lib/layout'
 import React, { useState } from 'react'
 import { Items, MulticastTable, SearchRow, MainInfoBar, CreateNewPUPModal } from '../../../components'
 import { Multicast } from '../../../interfaces/multicastInterfaces';
-import { PUPsDataType, PUPsType } from '../../../interfaces/pupsInterfaces';
+import { PUPsDataType, PUPsType, PUPWithTelemetry } from '../../../interfaces/pupsInterfaces';
 import styles from './homePageComponent.module.css'
 
 
@@ -15,9 +15,13 @@ type HomePageComponentProps = {
   PUPsData: PUPsDataType[] | null,
   multicast: Multicast[] | null,
   deletePUP: Function
+  getPUPs: () => void
+  isPUPsLoading: boolean
+  setActivePUP: (PUP: PUPsDataType) => void
+  activePUP: PUPsDataType | null
 }
 
-const HomePageComponent: React.FC<HomePageComponentProps> = ({ PUPsData = null, multicast, deletePUP }) => {
+const HomePageComponent: React.FC<HomePageComponentProps> = ({ PUPsData = null, multicast, deletePUP, getPUPs, isPUPsLoading, setActivePUP, activePUP }) => {
   const [visible, setVisible] = useState(false)
 
   return (
@@ -27,13 +31,19 @@ const HomePageComponent: React.FC<HomePageComponentProps> = ({ PUPsData = null, 
           <Content className={styles.pupsColumn} style={{ height: '100%' }}>
             <>
               {
-                !PUPsData
+                !PUPsData || isPUPsLoading
                 ? <LoadingOutlined/>
                 :<>
                 {
                   PUPsData.length === 0
                     ? <Empty />
-                    : <Items PUPsItems={PUPsData} deletePUP={deletePUP}/>
+                    : <Items 
+                        PUPsItems={PUPsData} 
+                        deletePUP={deletePUP} 
+                        getPUPs={getPUPs} 
+                        setActivePUP={setActivePUP}
+                        activePUP={activePUP}
+                      />
                 }
               </>
               }

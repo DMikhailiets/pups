@@ -33,6 +33,46 @@ export interface PUPsType {
   Version: number
 }
 
-export interface PUPsDataType extends PUP {
+export interface telemetryItem {
+  bitsDir: number,
+  bitsIn: number,
+  bitsOut: number,
+  btnState: number,
+  devId: number,
+  devIdOrigin: number,
+  ip: string,
+  ledErrState: number,
+  ledPwrState: number,
+  port: number
+  psuState: Array<{
+    address: number,
+    psuMode: number,
+    psuStatus: number,
+    value: number,
+    wdtStatus: number
+  }>
+  pwrOutState: Array<{
+    address: number,
+    current: number,
+    outPwrMode: number,
+    outPwrStatus: number,
+    voltage: number,
+    wdtStatus: number
+  }>
+  tempSensor: Array< {
+    address: number,
+    tempSensorStatus: number,
+    temperature: number
+  }>
+  voltageIn: number,
+  voltagePsu: number,
+  workTime: number
+}
+
+export interface PUPWithTelemetry extends PUP {
+  telemetry: telemetryItem
+}
+
+export interface PUPsDataType extends PUPWithTelemetry {
   pupType?: PUPsType
 }

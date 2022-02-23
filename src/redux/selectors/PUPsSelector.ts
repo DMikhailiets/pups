@@ -1,6 +1,6 @@
 import { AppState } from '../store';
 import { createSelector } from 'reselect'
-import { PUP, PUPsType } from '../../interfaces/pupsInterfaces';
+import { PUP, PUPsType, PUPWithTelemetry } from '../../interfaces/pupsInterfaces';
 
 
 const getPUPsData = (state: AppState) => {
@@ -10,7 +10,7 @@ const getPUPsData = (state: AppState) => {
 export const fetchPUPsData = createSelector(getPUPsData, data => {
   const {pupsTypes, pups} = data
   if (pupsTypes) {
-    return pups?.map((pup: PUP) => ({
+    return pups?.map((pup: PUPWithTelemetry) => ({
       ...pup,
       pupType: 
         pupsTypes?.find((pupsType: PUPsType) => pupsType.DevId ===  pup.DevId)
@@ -25,4 +25,8 @@ export const fetchIsLoading = createSelector(getPUPsData, data => {
 
 export const fetchPUPsTypes = createSelector(getPUPsData, data => {
   return data.pupsTypes
- })
+})
+
+export const fetchActivePUP = createSelector(getPUPsData, data => {
+  return data.activePUP
+})

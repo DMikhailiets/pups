@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import PUPModal from '../component/createPUPModal'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchPUPsTypes, fetchIsLoading } from '../../../redux/selectors/PUPsSelector'
-import { addNewPUP } from '../../../redux/asyncActions/PUPsReducerAsyncActions'
+import { addNewPUP, getPUPsAgain } from '../../../redux/asyncActions/PUPsReducerAsyncActions'
 import { PUPsType } from '../../../interfaces/pupsInterfaces'
 
 interface reatePUPModalContainerType {
@@ -15,7 +15,14 @@ const CreatePUPModalContainerContainer: React.FC<reatePUPModalContainerType> = (
   const dispatch = useDispatch()
   const pupsTypes = useSelector(fetchPUPsTypes)
   const isLoading = useSelector(fetchIsLoading)
-  return <PUPModal visible={visible} onClose={onClose} isLoading={isLoading} pupsTypes={pupsTypes} addNewPUP={(pup: {ip: string, port: number, DevId: string }) => dispatch(addNewPUP(pup))}/>
+  return <PUPModal 
+    visible={visible} 
+    onClose={onClose} 
+    isLoading={isLoading} 
+    pupsTypes={pupsTypes} 
+    addNewPUP={(pup: {ip: string, port: number, DevId: string }) => dispatch(addNewPUP(pup))}
+    getPUPs={() => dispatch(getPUPsAgain())}
+  />
 }
 
 export default CreatePUPModalContainerContainer
